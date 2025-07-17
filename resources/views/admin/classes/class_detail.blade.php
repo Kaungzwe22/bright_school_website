@@ -109,6 +109,7 @@
 
                         <!-- Submit -->
                         <div class="text-end">
+                            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
                             <button type="submit" class="btn btn-primary">Update Schedule</button>
                         </div>
 

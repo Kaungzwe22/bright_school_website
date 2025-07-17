@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\Courses;
+use App\Models\CourseType;
 use App\Models\Registers;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class RegisterController extends Controller
 {
     public function frontend_register(Request $request)
     {
-        return view("frontend.register");
+        $course_types = CourseType::all();
+        return view("frontend.register", compact('course_types'));
     }
 
     public function frontend_register_post(Request $request)
@@ -37,11 +39,13 @@ class RegisterController extends Controller
 
         $course_name = Courses::where('id', $request->course_id)->value('course_name');
         $class_info = Classes::where('id', $request->class_id)->get();
+        $course_types = CourseType::all();
 
         return view('frontend.register_success', [
             'data' => $datas,
             'course_name' => $course_name,
             'class_info' => $class_info,
+            'course_types' => $course_types
         ]);
     }
 
